@@ -1,0 +1,28 @@
+<form action="" class="col-md-5" (ngSubmit)="save()" #formData="ngForm" [hidden]="state == 'normal'">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" name="Name" [(ngModel)]="product.Name" #name required class="form-control">
+    <div class="alert alert-warning {{name.className}}">Name is required</div>
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" name="Price" [(ngModel)]="product.Price" #price required class="form-control">
+    <div class="alert alert-warning {{price.className}}">Price is required</div>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea type="text" name="Description" [(ngModel)]="product.Description" #desc required class="form-control"></textarea>
+    <div class="alert alert-warning {{desc.className}}">Description is required</div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!formData.form.valid">Save</button>
+</form>
+
+<div class="products-list"> 
+  <div class="product-item" *ngFor="let product of products">
+    <strong>{{product.Name}}</strong>
+    <p>{{product.Price}}</p>
+    <p>{{product.Description}}</p>
+    <button class="btn btn-default"(click)="detailProduct(product)">Detail</button>
+    <button class="btn btn-default"(click)="delete(product)">Delete</button>
+  </div>
+</div>
